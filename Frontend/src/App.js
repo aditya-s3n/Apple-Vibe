@@ -1,14 +1,15 @@
 //react module
 import React from "react";
 //react component
-import Header from "./Header";
-import Sidebar from "./Sidebar";
+import Welcome from "./Main Feed/Welcome Page/Weclome";
+import Feed from "./Main Feed/Feed";
 
 function App() {
   return (
-    <div>
-      <Header />
-      <Sidebar />
+    <div className="container">
+      
+      <Feed />
+
     </div>
   );
 }
