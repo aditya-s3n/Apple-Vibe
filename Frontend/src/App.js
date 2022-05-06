@@ -1,17 +1,36 @@
 //react module
-import React from "react";
+import React, {useState, useEffect} from "react";
 //react component
 import Welcome from "./Main Feed/Welcome Page/Weclome";
 import Feed from "./Main Feed/Feed";
 
 function App() {
-  return (
-    <div className="container">
-      
-      <Feed />
+  //get the domain name and path name
+  const domainName = "http://localhost:5000"
+  let pathName = window.location.pathname;
 
-    </div>
-  );
+  //page to render state
+  const [page, setPage] = useState('Feed');
+
+  //get the page to render from Flask Backend
+  useEffect(() => {
+    fetch(`${domainName}${pathName}`)
+      .then(response => response.json())
+      .then(data => {
+        setPage(data);
+      });
+  });
+
+  switch (page) {
+    case "Home":
+      return <Welcome />
+
+    case "Feed":
+      return <Feed />
+
+    default:
+      return <Welcome />
+  }
 }
 
 export default App;

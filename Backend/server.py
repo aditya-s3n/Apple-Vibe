@@ -1,11 +1,27 @@
-import pymongo
-# Replace the uri string with your MongoDB deployment's connection string.
-conn_str = "mongodb+srv://admin:kT3p4TqNcgc21JTJ@cluster0.5sghb.mongodb.net/userDB?retryWrites=true&w=majority"
-# set a 5-second connection timeout
-client = pymongo.MongoClient(conn_str, serverSelectionTimeoutMS=5000)
+from flask import Flask, jsonify
+from flask_cors import CORS
 
-#make a schema
+app = Flask(__name__)
+CORS(app)
 
-#make a user
+###################################### ROUTING ######################################
+@app.route("/")
+def home():
+    return "Home";
 
-#send user over to database 
+@app.route("/signup", methods=['GET', 'POST'])
+def signup():
+    return ""
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    return ""
+
+@app.route("/feed")
+def feed():
+    return "Feed"
+
+
+###################################### RUN SERVER ######################################
+if __name__ == "__main__":
+    app.run()

@@ -2,7 +2,7 @@ import React from "react"
 
 function NavBar() {
     return (
-        <header class="p-3 mb-3 border-bottom">
+        <nav class="p-3 mb-3 border-bottom sticky-top navbar-light bg-light">
             <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
@@ -34,7 +34,7 @@ function NavBar() {
                 </div>
             </div>
             </div>
-        </header>
+        </nav>
     );
 }
 

@@ -6,14 +6,17 @@ import Tag from "./Tag";
 function Item (props) {
     return (
         <div className="p-5 mb-4 bg-light rounded-3">
-            <h1 className="display-5 fw-bold">Custom jumbotron</h1>
+            <h1 className="display-5 fw-bold"><img src="https://github.com/mdo.png" alt="mdo" width="75" height="75" class="rounded-circle me-5" />{props.name}</h1>
             <hr />
-            <div className="container-fluid py-5">
-                <p className="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-                <p>Biography:</p>
-                <p>Resume:</p>
-                <button className="btn btn-primary btn-lg my-3" type="button">View More</button>
+            <div className="container-fluid py-2">
+                <p className="col-md-8 fs-5 fw-bold">Biography:</p>
+                <p className="col-md-8">{props.biography}</p>
+
+                <p className="col-md-8 fs-5 fw-bold">Video Resume:</p>
+                <button className="btn btn-outline-dark my-3" type="button">View More</button>
+
                 <hr />
+                <p>Looking for...</p>
                 <Tag name="Developer"/>
             </div>
         </div>
