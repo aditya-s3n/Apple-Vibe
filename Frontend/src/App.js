@@ -8,16 +8,17 @@ function App() {
   //get the domain name and path name
   const domainName = "http://localhost:5000"
   let pathName = window.location.pathname;
+  
 
   //page to render state
-  const [page, setPage] = useState('Feed');
+  const [page, setPage] = useState(null);
 
   //get the page to render from Flask Backend
   useEffect(() => {
     fetch(`${domainName}${pathName}`)
       .then(response => response.json())
       .then(data => {
-        setPage(data);
+        setPage(data.page);
       });
   });
 
@@ -29,7 +30,7 @@ function App() {
       return <Feed />
 
     default:
-      return <Welcome />
+      return <Feed />
   }
 }
 

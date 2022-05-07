@@ -1,3 +1,4 @@
+import json
 from flask import Flask, jsonify
 from flask_cors import CORS
 
@@ -7,7 +8,7 @@ CORS(app)
 ###################################### ROUTING ######################################
 @app.route("/")
 def home():
-    return "Home";
+    return jsonify({"page": "Home"})
 
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
@@ -19,7 +20,7 @@ def login():
 
 @app.route("/feed")
 def feed():
-    return "Feed"
+    return jsonify({"page": "Feed"})
 
 
 ###################################### RUN SERVER ######################################
