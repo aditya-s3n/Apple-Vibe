@@ -44,8 +44,8 @@ function Item (props) {
 
                 <hr />
                 <p>Looking for...</p>
-                
-                {/* {props.tagMap.map((value) => {
+                <Tag name="Developer" />
+                {/* {props.tagMap.map(value => {
                     return <Tag name={value} />
                 })} */}
 

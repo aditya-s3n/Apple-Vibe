@@ -12,11 +12,19 @@ def home():
 
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
-    return ""
+    return jsonify({"page": "Sign Up"})
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    return ""
+    return jsonify({"page": "Log In"})
+
+@app.route("/user/<userID>")
+def user(userID):
+    return jsonify({"page": "user"})
+
+@app.route("/star")
+def star():
+    return jsonify({"page": "Star"})
 
 @app.route("/feed")
 def feed():

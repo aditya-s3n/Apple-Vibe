@@ -3,12 +3,12 @@ import React, {useState, useEffect} from "react";
 //react component
 import Welcome from "./Main Feed/Welcome Page/Weclome";
 import Feed from "./Main Feed/Feed";
+import Star from "./Starred/Star";
 
 function App() {
   //get the domain name and path name
   const domainName = "http://localhost:5000"
   let pathName = window.location.pathname;
-  
 
   //page to render state
   const [page, setPage] = useState(null);
@@ -22,6 +22,7 @@ function App() {
       });
   });
 
+  console.log(page);
   switch (page) {
     case "Home":
       return <Welcome />
@@ -29,8 +30,11 @@ function App() {
     case "Feed":
       return <Feed />
 
+    case "Star":
+      return <Star />
+
     default:
-      return <Feed />
+      return;
   }
 }
 
