@@ -1,4 +1,3 @@
-import json
 from flask import Flask, jsonify
 from flask_cors import CORS
 
@@ -22,6 +21,17 @@ def login():
 def feed():
     return jsonify({"page": "Feed"})
 
+@app.route("/UserUpdatePage")
+def UserUpdatePage():
+    return jsonify({"page": "UserUpdatePage"})
+
+@app.route("/SignupPage")
+def SignupPage():
+    return jsonify({"page": "SignupPage"})
+
+@app.route("/pricing")
+def pricing():
+    return jsonify({"page": "pricing"})
 
 ###################################### RUN SERVER ######################################
 if __name__ == "__main__":
