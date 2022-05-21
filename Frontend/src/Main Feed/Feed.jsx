@@ -4,17 +4,20 @@ import React, {useState, useEffect} from "react";
 import Item from "./Feed/Item"
 import NavBar from "../NavBar";
 
+async function getStarInfo() {
+    const domainName = "http://localhost:5000"
+    let response = await fetch(`${domainName}/starinfo`)
+    
+    return response.json();
+}
 function Feed() {
     const domainName = "http://localhost:5000"
 
     const [starArray, setStarArray] = useState([]);
     
     useEffect(() => {
-        fetch(`${domainName}/starinfo`)
-            .then(response => response.json())
-            .then(data => {
-                setStarArray(data.favourite);
-            });
+        setStarArray(getStarInfo());
+        
     }, []);
 
     return (

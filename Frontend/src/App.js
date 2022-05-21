@@ -23,12 +23,10 @@ function App() {
     fetch(`${domainName}${pathName}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         setPage(data.page);
       });
   });
 
-  console.log(page);
   switch (page) {
     case "Home":
       return <Welcome />
