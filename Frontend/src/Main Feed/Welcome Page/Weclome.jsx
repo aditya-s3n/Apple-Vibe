@@ -1,6 +1,7 @@
 //react modules
 import React from "react";
 import NavBar from "../../NavBar"
+import Footera from "../../Footera";
 
 //render Welcome function
 function Welcome() {
@@ -46,6 +47,8 @@ function Welcome() {
         </div>
       </div>
 
+
+      <Footera />
       </div>
       
     );

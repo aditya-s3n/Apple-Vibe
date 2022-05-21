@@ -37,7 +37,7 @@ function Item (props) {
                 </video>
 
                 <br />
-                <button className="btn btn-outline-dark btn-lg my-3 me-2" type="button">View More</button>
+                <button className="btn btn-outline-dark btn my-3 me-2" type="button">Disqualify</button>
                 <IconButton color="primary" aria-label="add to shopping cart" onClick={clickFavourite}>
                     {favourite ? <StarIcon fontSize="large" sx={{ color: yellow[700] }}/> : <StarBorderIcon fontSize="large" sx={{ color: yellow[700] }}/>}
                 </IconButton>

@@ -104,13 +104,17 @@ def feed():
 def UserUpdatePage():
     return jsonify({"page": "UserUpdatePage"})
 
+@app.route("/UserImage")
+def UserImage():
+    return jsonify({"page": "UserImage"})
+
 @app.route("/SignupPage")
 def SignupPage():
     return jsonify({"page": "SignupPage"})
 
 @app.route("/pricing")
 def pricing():
-    return jsonify({"page": "pricing"})
+    return jsonify({"page": "Pricing"})
 
 ###################################### RUN SERVER ######################################
 if __name__ == "__main__":

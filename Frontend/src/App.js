@@ -48,10 +48,14 @@ function App() {
     case "Footer":
         return <Footera />
       
-    default:
+    case "UserImage":
       return <UserImage />
+      
     case "Star":
       return <Star />
+
+    default:
+      return null;
 
   }
 }
