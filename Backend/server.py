@@ -1,9 +1,73 @@
-import json
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
+import pymongo
 
 app = Flask(__name__)
 CORS(app)
+
+###################################### MongoDB Database ######################################
+local_connection = "mongodb://localhost:27017"
+#Connection to Database
+conn_str = "mongodb+srv://Aditya:applevibe@cluster0.ovdha.mongodb.net/Applevibe?retryWrites=true&w=majority"
+# set a 5-second connection timeout
+client = pymongo.MongoClient(local_connection, serverSelectionTimeoutMS=5000)
+#make collections
+db = client["Applevibe"]
+talent_collection = db["talent"]
+recuriter_collection = db["recuriters"]
+
+def makeUser_talent(first_name, last_name, bio, tag: list, pic_data, vid_data, pic_id, vid_id, userTag) -> None:
+    post = {
+        "fullName" : {
+            "firstName": first_name,
+            "lastName": last_name
+        },
+        "userTag": userTag,
+        "biography": bio,
+        "tags": tag,
+        "picture": {
+            "data": pic_data,
+            "fileID": pic_id
+        },
+        "video": {
+            "data": vid_data,
+            "fileID": vid_id
+        },
+        "starred_company": []
+    }   
+
+    talent_collection.insert_one(post).inserted_id
+
+def makeUser_recuriter(first_name, last_name, bio, tag: list, pic_data, vid_data, pic_id, vid_id, userTag) -> None:
+    post = {
+        "fullName" : {
+            "firstName": first_name,
+            "lastName": last_name
+        },
+        "userTag": userTag,
+        "biography": bio,
+        "tags": tag,
+        "picture": {
+            "data": pic_data,
+            "fileID": pic_id
+        },
+        "video": {
+            "data": vid_data,
+            "fileID": vid_id
+        },
+        "starred_talent": []
+    }   
+
+    talent_collection.insert_one(post).inserted_id
+
+def findUser_talent(post_id) -> object:
+    return talent_collection.find_one({"_id": post_id})
+ 
+def findUser_recuriter(post_id) -> object:
+    return recuriter_collection.find_one({"_id": post_id})
+
+def save_star():
+    pass
 
 ###################################### ROUTING ######################################
 @app.route("/")
@@ -20,7 +84,13 @@ def login():
 
 @app.route("/user/<userID>")
 def user(userID):
-    return jsonify({"page": "user"})
+    user_info = findUser_talent(userID)
+    return jsonify({"page": "user", "info": user_info})
+
+@app.route("/starinfo", methods=['GET', 'POST'])
+def starInfo():
+    if request.method == "GET":
+        return jsonify({"favourite": [True, False, True, False, True, False, True]})
 
 @app.route("/star")
 def star():

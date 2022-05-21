@@ -9,8 +9,8 @@ import { yellow } from "@mui/material/colors";
 
 function Item (props) {
     //set state of favourite list
-    const [favourite, setFavourite] = useState(props.favourite);
-
+    const [favourite, setFavourite] = useState(props.starred);
+    
     function clickFavourite() {
         if (favourite === true) {
             setFavourite(false);
