@@ -1,0 +1,17 @@
+{
+    ObjectID: ""
+    fullName: {
+        firstName: "Aditya"
+        lastName: "Sen"
+    },
+    biography: "This is my biography",
+    tags: ["Developer", "Full-Stack", "React"],
+    picture: {
+        data: "data",
+        fileID: ""
+    }
+    video: {
+        data: "data",
+        fileID: ""
+    }
+}

@@ -8,12 +8,12 @@ import SignupPage from './SignupPage';
 import Pricing from "./Pricing";
 import UserImage from "./UserImage";
 import Footera from "./Footera";
+import Star from "./Starred/Star";
 
 function App() {
   //get the domain name and path name
   const domainName = "http://localhost:5000"
   let pathName = window.location.pathname;
-  
 
   //page to render state
   const [page, setPage] = useState(null);
@@ -28,6 +28,7 @@ function App() {
       });
   });
 
+  console.log(page);
   switch (page) {
     case "Home":
       return <Welcome />
@@ -49,6 +50,9 @@ function App() {
       
     default:
       return <UserImage />
+    case "Star":
+      return <Star />
+
   }
 }
 
