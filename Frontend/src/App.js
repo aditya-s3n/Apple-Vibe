@@ -53,7 +53,7 @@ function App() {
       return <Star />
 
     default:
-      return <Pricing />;
+      return null;
 
   }
 }

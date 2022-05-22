@@ -29,7 +29,7 @@ function Pricing() {
                             <li>Email support</li>
                             <li>Help center access</li>
                             </ul>
-                            <button type="button" class="w-100 btn btn-lg btn-outline-primary">Sign up for free</button>
+                            <a href="/SignupPage"><button type="button" class="w-100 btn btn-lg btn-outline-primary">Sign up for free</button></a>
                         </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@ function Pricing() {
                             <li>Advanced filters</li>
                             <li>Dedicated Account Manager</li>
                             </ul>
-                            <button type="button" class="w-100 btn btn-lg btn-primary">Get started</button>
+                            <a href="/SignupPage"><button type="button" class="w-100 btn btn-lg btn-primary">Get started</button></a>
                         </div>
                         </div>
                     </div>
