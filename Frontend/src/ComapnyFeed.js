@@ -5,7 +5,7 @@ import Item from "./Feed/Item"
 import NavBar from "../NavBar";
 import Footera from "./Footera";
 
-function Feed() {
+function ComapnyFeed() {
     const domainName = "http://localhost:5000"
     
     const [userInfo, setUserInfo] = useState(null);
@@ -29,17 +29,9 @@ function Feed() {
 
             <Item videoURL="" imageURL="Person3.png" />
 
-            <Item videoURL="" imageURL="Person4.jpg"/>
-
-            <Item videoURL="" imageURL="Person5.jpg" />
-
-            <Item videoURL="" imageURL="Person6.jpg" />
-
-            <Item videoURL="" imageURL="Person7.png" />
-
             <Footera />
         </div>
     );
 }
 
-export default Feed;
+export default ComapnyFeed;

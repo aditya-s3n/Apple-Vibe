@@ -53,7 +53,7 @@ function App() {
       return <Star />
 
     default:
-      return <UserUpdatePage />;
+      return <Pricing />;
 
   }
 }
