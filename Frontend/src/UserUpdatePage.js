@@ -7,7 +7,7 @@ function UserUpdatePage() {
         <div class="container">
             <main>
                 <div class="py-5 text-center">
-                <img class="d-block mx-auto mb-4" src="Logo.png" alt="" width="72" height="57"/>
+                <img class="d-block mx-auto mb-4" src="Logo.png" alt="" width="57" height="57"/>
                 
                 <div class="col-md-7 col-lg-8">
                     <h4 class="mb-3">Update your profile</h4>
@@ -41,7 +41,7 @@ function UserUpdatePage() {
                         </div>
 
                         <div class="col-12">
-                        <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
+                        <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" placeholder="you@example.com"/>
                         <div class="invalid-feedback">
                             Please enter a valid email address.
@@ -53,7 +53,6 @@ function UserUpdatePage() {
                     </form>
                 </div>
                 </div>
-                
             </main>
             </div>
     )
