@@ -40,6 +40,20 @@ def find_star() -> object:
 def save_star(star_array: list):
     star_collection.update_one({}, {"$set": {"star_array": star_array}})
 
+# aditya_bhatia_bio = "Hi I'm Aditya, I'm a student at Iroquois Ridge High school and an Operations Assistant at Planswell. At school I actively participate in many clubs such as DECA, Robotics and TU20"
+# aditya_sen_bio = "Hi I'm Aditya, I'm a student at Iroquois Ridge High School and an ethusatic developer. At school I actively lead the Robotics Club and Team, and participate in clubs like Model UN, TU20 and anything to do with technology, engineering, or science"
+# person3_bio = "I do good work in keeping computer architure safe and secure. I am a white-hood hacker, if you need to cybersecruity maintaince I am you gal. Cheers."
+# person4_bio = "I am a congress-woman. I will keep you from getting money, you stole all the money you made off the backs of illegal immigrants. I have no developer experience, or any experience running companies. Thank you, please hire :)"
+# person5_bio = ""
+# person6_bio = ""
+# person7_bio = ""
+# makeUser_talent("Aditya", "Bhatia", aditya_bhatia_bio, ["Developer", "Marketer", "Operations", "C-Suite"], 1)
+# makeUser_talent("Aditya", "Sen", aditya_sen_bio, ["Developer", "Full-Stack", "Operations", "C-Suite"], 2)
+# makeUser_talent("NFT", "Hacker", person3_bio, ["Developer", "Full-Stack", "Cybersecruity"], 3)
+# makeUser_talent("Alexandria", "Ocasio-Cortez", aditya_sen_bio, ["Developer", "Full-Stack", "Operations", "C-Suite"], 4)
+# makeUser_talent("Aditya", "Sen", aditya_sen_bio, ["Developer", "Full-Stack", "Operations", "C-Suite"], 5)
+# makeUser_talent("Aditya", "Sen", aditya_sen_bio, ["Developer", "Full-Stack", "Operations", "C-Suite"], 6)
+# makeUser_talent("Aditya", "Sen", aditya_sen_bio, ["Developer", "Full-Stack", "Operations", "C-Suite"], 7)
 ###################################### ROUTING ######################################
 @app.route("/")
 def home():
@@ -61,7 +75,7 @@ def user(userID):
 @app.route("/starinfo", methods=['GET', 'POST'])
 def starInfo():
     if request.method == "GET":
-        return jsonify({"favourite": [True, False, True, False, True, False, True]})
+        return jsonify({"favourite": find_star()})
 
 @app.route("/star")
 def star():
