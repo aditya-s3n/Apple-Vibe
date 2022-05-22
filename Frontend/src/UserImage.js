@@ -30,7 +30,12 @@ function UserImage() {
 
             <div class="col-md-4"> 
                 <h6>Video Resume:<span class="label label-default"></span></h6>
-                <video width="300" height="500" autoplay controls>
+                <video width="300" height="500" loop autoPlay>
+                    <source
+                    src="AdityaBVideoResume.mp4"
+                    type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
                     </video>
                 </div>
             
