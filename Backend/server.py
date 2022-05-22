@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import pymongo
+import bson.json_util as json_util
 
 app = Flask(__name__)
 CORS(app)
@@ -16,33 +17,53 @@ db = client["Applevibe"]
 talent_collection = db["talent"]
 star_collection = db["star"]
 
-def makeUser_talent(first_name, last_name, bio, tag: list, userNumber) -> None:
+def makeUser_talent(first_name, last_name, bio, tag: list, userNumber, pictureName, favourite) -> None:
     post = {
-        "_id": userNumber,
+        "id": userNumber,
         "fullName" : {
             "firstName": first_name,
             "lastName": last_name
         },
         "biography": bio,
         "tags": tag,
-        "picture": userNumber,
-        "video": userNumber,
+        "picture": pictureName,
+        "starred": favourite
     }   
 
     talent_collection.insert_one(post)
 
-def findUsers() -> object:
-    return talent_collection.find();
+def make_star(userNumber, favourite):
+    post = {
+        "id": userNumber,
+        "star": favourite
+    }
+
+    star_collection.insert_one(post)
+
+def findUsers() -> list:
+    users = []
+    for x in talent_collection.find():
+        users.append(x)
+
+    return users
 
 def findUser_talent(user_id) -> object:
     return talent_collection.find_one({"_id": user_id})
  
-def find_star() -> object:
-    return star_collection.find_one()
+def find_star() -> list:
+    star = []
+    for x in star_collection.find():
+        star.append(x)
+    return star
 
 def save_star(star_array: list):
     star_collection.update_one({}, {"$set": {"star_array": star_array}})
 
+
+
+
+
+# talent_collection.delete_many({})
 # aditya_bhatia_bio = "Hi I'm Aditya, I'm a student at Iroquois Ridge High school and an Operations Assistant at Planswell. At school I actively participate in many clubs such as DECA, Robotics and TU20"
 # aditya_sen_bio = "Hi I'm Aditya, I'm a student at Iroquois Ridge High School and an ethusatic developer. At school I actively lead the Robotics Club and Team, and participate in clubs like Model UN, TU20 and anything to do with technology, engineering, or science"
 # person3_bio = "I do good work in keeping computer architure safe and secure. I am a white-hood hacker, if you need to cybersecruity maintaince I am you gal. Cheers."
@@ -50,13 +71,13 @@ def save_star(star_array: list):
 # person5_bio = "MMA Fighter and Commentator, Comedian, Father, Podcaster. I do it all. Won't find anywhere else, try DMT."
 # person6_bio = "Billionaire. Former CEO of Amazon, Founder of Amazon. I just like Amazon. :)"
 # person7_bio = "Hello I need a job. A job where I don't have to deal with kids vaping in the bathroom."
-# makeUser_talent("Aditya", "Bhatia", aditya_bhatia_bio, ["Developer", "Marketer", "Operations", "C-Suite"], 1)
-# makeUser_talent("Aditya", "Sen", aditya_sen_bio, ["Developer", "Full-Stack", "Operations", "C-Suite"], 2)
-# makeUser_talent("NFT", "Hacker", person3_bio, ["Developer", "Full-Stack", "Cybersecruity"], 3)
-# makeUser_talent("Alexandria", "Ocasio-Cortez", person4_bio, ["Congress-Woman", "Democrat", "Tax the Rich"], 4)
-# makeUser_talent("Joe", "Rogan", person5_bio, ["Podcaster", "TEXAS", "Tech Enthusiast", "C-Suite"], 5)
-# makeUser_talent("Jeff", "Bezos", person6_bio, ["Developer", "Full-Stack", "Operations", "C-Suite", "Founder", "AMAZON"], 6)
-# makeUser_talent("John", "Steiva", person7_bio, ["Investor", "Academia", "Operations", "C-Suite"], 7)
+# makeUser_talent("Aditya", "Bhatia", aditya_bhatia_bio, ["Developer", "Marketer", "Operations", "C-Suite"], 1, "Person1.png", False)
+# makeUser_talent("Aditya", "Sen", aditya_sen_bio, ["Developer", "Full-Stack", "Operations", "C-Suite"], 2, "Person2.jpg", False)
+# makeUser_talent("NFT", "Hacker", person3_bio, ["Developer", "Full-Stack", "Cybersecruity"], 3, "Person3.png", False)
+# makeUser_talent("Alexandria", "Ocasio-Cortez", person4_bio, ["Congress-Woman", "Democrat", "Tax the Rich"], 4, "Person4.jpg", False)
+# makeUser_talent("Joe", "Rogan", person5_bio, ["Podcaster", "TEXAS", "Tech Enthusiast", "C-Suite"], 5, "Person5.jpg", False)
+# makeUser_talent("Jeff", "Bezos", person6_bio, ["Developer", "Full-Stack", "Operations", "C-Suite", "Founder", "AMAZON"], 6, "Person6.jpg", False)
+# makeUser_talent("John", "Steiva", person7_bio, ["Investor", "Academia", "Operations", "C-Suite"], 7, "Person7.png", False)
 # print("done");
 ###################################### ROUTING ######################################
 @app.route("/")
@@ -78,14 +99,17 @@ def login():
 
 @app.route("/userinfo")
 def userInfo():
-    return jsonify(findUsers())
+    users = findUsers()
+    return json_util.dumps({"user_info": users})
 
 @app.route("/starinfo", methods=['GET', 'POST'])
 def starInfo():
     if request.method == "GET":
-        return jsonify({"favourite": find_star()})
+        star = find_star()
+        return json_util.dumps({"favourite": star})
     elif request.method == "POST":
-        pass
+        data = request.json
+        print(data)
 
 @app.route("/star")
 def star():
