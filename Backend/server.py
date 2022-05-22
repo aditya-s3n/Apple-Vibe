@@ -14,60 +14,31 @@ client = pymongo.MongoClient(local_connection, serverSelectionTimeoutMS=5000)
 #make collections
 db = client["Applevibe"]
 talent_collection = db["talent"]
-recuriter_collection = db["recuriters"]
+star_collection = db["star"]
 
-def makeUser_talent(first_name, last_name, bio, tag: list, pic_data, vid_data, pic_id, vid_id, userTag) -> None:
+def makeUser_talent(first_name, last_name, bio, tag: list, userNumber) -> None:
     post = {
+        "_id": userNumber,
         "fullName" : {
             "firstName": first_name,
             "lastName": last_name
         },
-        "userTag": userTag,
         "biography": bio,
         "tags": tag,
-        "picture": {
-            "data": pic_data,
-            "fileID": pic_id
-        },
-        "video": {
-            "data": vid_data,
-            "fileID": vid_id
-        },
-        "starred_company": []
+        "picture": userNumber,
+        "video": userNumber,
     }   
 
-    talent_collection.insert_one(post).inserted_id
-
-def makeUser_recuriter(first_name, last_name, bio, tag: list, pic_data, vid_data, pic_id, vid_id, userTag) -> None:
-    post = {
-        "fullName" : {
-            "firstName": first_name,
-            "lastName": last_name
-        },
-        "userTag": userTag,
-        "biography": bio,
-        "tags": tag,
-        "picture": {
-            "data": pic_data,
-            "fileID": pic_id
-        },
-        "video": {
-            "data": vid_data,
-            "fileID": vid_id
-        },
-        "starred_talent": []
-    }   
-
-    talent_collection.insert_one(post).inserted_id
+    talent_collection.insert_one(post)
 
 def findUser_talent(post_id) -> object:
     return talent_collection.find_one({"_id": post_id})
  
-def findUser_recuriter(post_id) -> object:
-    return recuriter_collection.find_one({"_id": post_id})
+def find_star() -> object:
+    return star_collection.find_one()
 
-def save_star():
-    pass
+def save_star(star_array: list):
+    star_collection.update_one({}, {"$set": {"star_array": star_array}})
 
 ###################################### ROUTING ######################################
 @app.route("/")

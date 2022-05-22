@@ -1,5 +1,5 @@
 //react modules
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 //react components
 import Tag from "./Tag";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -10,8 +10,10 @@ import { yellow } from "@mui/material/colors";
 function Item (props) {
     const [disqualify, setDisqualify] = useState(false);
     //set state of favourite list
+    console.log(props.starred);
+    console.log(props);
     const [favourite, setFavourite] = useState(props.starred);
-    console.log(favourite);
+    
     
     function clickFavourite() {
         if (favourite === true) {
