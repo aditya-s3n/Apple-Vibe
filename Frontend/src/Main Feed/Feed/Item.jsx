@@ -1,5 +1,5 @@
 //react modules
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 //react components
 import Tag from "./Tag";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -8,10 +8,16 @@ import IconButton from '@mui/material/IconButton';
 import { yellow } from "@mui/material/colors";
 
 function Item (props) {
+    const domainName = "http://localhost:5000"
     const [disqualify, setDisqualify] = useState(false);
     //set state of favourite list
-    const [favourite, setFavourite] = useState(props.starred);
-    console.log(favourite);
+    const [favourite, setFavourite] = useState(false);
+    
+    useState(() => {
+        fetch(`${domainName}/starinfo`)
+            .then(response => response.json())
+            .then(data => setFavourite(data.favourite[props.user_id]));
+    }, []);
     
     function clickFavourite() {
         if (favourite === true) {
@@ -37,7 +43,7 @@ function Item (props) {
 
                     <p className="col-md-8 fs-5 fw-bold">Video Resume:</p>
 
-                    <video width="320" height="240" autoplay controls>
+                    <video width="300" height="500" autoplay controls>
                         <source src={props.videoURL} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>

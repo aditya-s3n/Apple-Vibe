@@ -4,39 +4,38 @@ import React, {useState, useEffect} from "react";
 import Item from "./Feed/Item"
 import NavBar from "../NavBar";
 
-async function getStarInfo() {
-    const domainName = "http://localhost:5000"
-    let response = await fetch(`${domainName}/starinfo`)
-    
-    return response.json();
-}
 function Feed() {
     const domainName = "http://localhost:5000"
-
-    const [starArray, setStarArray] = useState([]);
     
+    const [userInfo, setUserInfo] = useState(null);
+
     useEffect(() => {
-        setStarArray(getStarInfo());
-        
-    }, []);
+        fetch(`${domainName}/userinfo`)
+            .then(response => response.json())
+            .then(data => {
+                setUserInfo(data);
+            });
+    }, [])
 
     return (
         <div>
+        
             <NavBar />
 
-            <Item biography="this is my biography" name="Aditya" imageURL="https://github.com/mdo.png" starred={starArray[0]}/>
+            <Item videoURL="AdityaBVideoResume.mp4" biography="this is my biography" name="Aditya" imageURL="Person1.png" user_id={1}/>
 
-            <Item starred={starArray[1]}/>
+            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person2.jpg" />
 
-            <Item starred={starArray[2]}/>
+            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person3.png" />
 
-            <Item starred={starArray[3]}/>
+            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person4.jpg"/>
 
-            <Item starred={starArray[4]}/>
+            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person5.jpg" />
 
-            <Item starred={starArray[5]}/>
+            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person6.jpg" />
 
-            <Item starred={starArray[6]}/>
+            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person7.png" />
+
         </div>
     );
 }

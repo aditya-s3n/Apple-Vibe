@@ -14,61 +14,50 @@ client = pymongo.MongoClient(local_connection, serverSelectionTimeoutMS=5000)
 #make collections
 db = client["Applevibe"]
 talent_collection = db["talent"]
-recuriter_collection = db["recuriters"]
+star_collection = db["star"]
 
-def makeUser_talent(first_name, last_name, bio, tag: list, pic_data, vid_data, pic_id, vid_id, userTag) -> None:
+def makeUser_talent(first_name, last_name, bio, tag: list, userNumber) -> None:
     post = {
+        "_id": userNumber,
         "fullName" : {
             "firstName": first_name,
             "lastName": last_name
         },
-        "userTag": userTag,
         "biography": bio,
         "tags": tag,
-        "picture": {
-            "data": pic_data,
-            "fileID": pic_id
-        },
-        "video": {
-            "data": vid_data,
-            "fileID": vid_id
-        },
-        "starred_company": []
+        "picture": userNumber,
+        "video": userNumber,
     }   
 
-    talent_collection.insert_one(post).inserted_id
+    talent_collection.insert_one(post)
 
-def makeUser_recuriter(first_name, last_name, bio, tag: list, pic_data, vid_data, pic_id, vid_id, userTag) -> None:
-    post = {
-        "fullName" : {
-            "firstName": first_name,
-            "lastName": last_name
-        },
-        "userTag": userTag,
-        "biography": bio,
-        "tags": tag,
-        "picture": {
-            "data": pic_data,
-            "fileID": pic_id
-        },
-        "video": {
-            "data": vid_data,
-            "fileID": vid_id
-        },
-        "starred_talent": []
-    }   
+def findUsers() -> object:
+    return talent_collection.find();
 
-    talent_collection.insert_one(post).inserted_id
-
-def findUser_talent(post_id) -> object:
-    return talent_collection.find_one({"_id": post_id})
+def findUser_talent(user_id) -> object:
+    return talent_collection.find_one({"_id": user_id})
  
-def findUser_recuriter(post_id) -> object:
-    return recuriter_collection.find_one({"_id": post_id})
+def find_star() -> object:
+    return star_collection.find_one()
 
-def save_star():
-    pass
+def save_star(star_array: list):
+    star_collection.update_one({}, {"$set": {"star_array": star_array}})
 
+# aditya_bhatia_bio = "Hi I'm Aditya, I'm a student at Iroquois Ridge High school and an Operations Assistant at Planswell. At school I actively participate in many clubs such as DECA, Robotics and TU20"
+# aditya_sen_bio = "Hi I'm Aditya, I'm a student at Iroquois Ridge High School and an ethusatic developer. At school I actively lead the Robotics Club and Team, and participate in clubs like Model UN, TU20 and anything to do with technology, engineering, or science"
+# person3_bio = "I do good work in keeping computer architure safe and secure. I am a white-hood hacker, if you need to cybersecruity maintaince I am you gal. Cheers."
+# person4_bio = "I am a congress-woman. I will keep you from getting money, you stole all the money you made off the backs of illegal immigrants. I have no developer experience, or any experience running companies. Thank you, please hire :)"
+# person5_bio = "MMA Fighter and Commentator, Comedian, Father, Podcaster. I do it all. Won't find anywhere else, try DMT."
+# person6_bio = "Billionaire. Former CEO of Amazon, Founder of Amazon. I just like Amazon. :)"
+# person7_bio = "Hello I need a job. A job where I don't have to deal with kids vaping in the bathroom."
+# makeUser_talent("Aditya", "Bhatia", aditya_bhatia_bio, ["Developer", "Marketer", "Operations", "C-Suite"], 1)
+# makeUser_talent("Aditya", "Sen", aditya_sen_bio, ["Developer", "Full-Stack", "Operations", "C-Suite"], 2)
+# makeUser_talent("NFT", "Hacker", person3_bio, ["Developer", "Full-Stack", "Cybersecruity"], 3)
+# makeUser_talent("Alexandria", "Ocasio-Cortez", person4_bio, ["Congress-Woman", "Democrat", "Tax the Rich"], 4)
+# makeUser_talent("Joe", "Rogan", person5_bio, ["Podcaster", "TEXAS", "Tech Enthusiast", "C-Suite"], 5)
+# makeUser_talent("Jeff", "Bezos", person6_bio, ["Developer", "Full-Stack", "Operations", "C-Suite", "Founder", "AMAZON"], 6)
+# makeUser_talent("John", "Steiva", person7_bio, ["Investor", "Academia", "Operations", "C-Suite"], 7)
+# print("done");
 ###################################### ROUTING ######################################
 @app.route("/")
 def home():
@@ -82,15 +71,21 @@ def signup():
 def login():
     return jsonify({"page": "Log In"})
 
-@app.route("/user/<userID>")
-def user(userID):
-    user_info = findUser_talent(userID)
-    return jsonify({"page": "user", "info": user_info})
+# @app.route("/user/<userID>")
+# def user(userID):
+#     user_info = findUser_talent(userID)
+#     return jsonify({"page": "user", "info": user_info})
+
+@app.route("/userinfo")
+def userInfo():
+    return jsonify(findUsers())
 
 @app.route("/starinfo", methods=['GET', 'POST'])
 def starInfo():
     if request.method == "GET":
-        return jsonify({"favourite": [True, False, True, False, True, False, True]})
+        return jsonify({"favourite": find_star()})
+    elif request.method == "POST":
+        pass
 
 @app.route("/star")
 def star():

@@ -12,13 +12,13 @@ function Welcome() {
       <NavBar />
 
       <div class="px-4 py-5 my-5 text-center">
-        <img class="d-block mx-auto mb-4" src="" alt="" width="72" height="57" />
+        <img class="d-block mx-auto mb-4" src="Logo.png" alt="Company PFP" width="100" height="100" />
         <h1 class="display-5 fw-bold">Orange</h1>
         <div class="col-lg-6 mx-auto">
           <p class="lead mb-4">Quickly make a match between a company and talent! Creating quick, efficient, and effective communication between potential companies and talent.</p>
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
             <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Get Started</button>
-            <button type="button" class="btn btn-outline-secondary btn-lg px-4">Log In</button>
+            <a href="/SignupPage"><button type="button" class="btn btn-outline-secondary btn-lg px-4">Log In</button></a>
           </div>
         </div>
       </div>
