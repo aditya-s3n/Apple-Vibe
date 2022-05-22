@@ -56,8 +56,8 @@ def find_star() -> list:
         star.append(x)
     return star
 
-def save_star(star_array: list):
-    star_collection.update_one({}, {"$set": {"star_array": star_array}})
+def save_star(star_object: object):
+    talent_collection.update_one({"id": star_object["id"]}, {"$set": {"starred": star_object["star"]}})
 
 
 
@@ -110,6 +110,9 @@ def starInfo():
     elif request.method == "POST":
         data = request.json
         print(data)
+        save_star(data)
+        print(find_star())
+        return data
 
 @app.route("/star")
 def star():

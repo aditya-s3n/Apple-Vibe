@@ -18,6 +18,7 @@ function Star() {
         data.then(value => {
             setUserInfo(value.user_info)
         })
+
     }, [])
 
     return (

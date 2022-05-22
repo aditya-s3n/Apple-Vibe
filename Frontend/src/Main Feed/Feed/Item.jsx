@@ -15,7 +15,7 @@ async function sendStar(favourite, id) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: id, star: favourite })
     };
-    await fetch(`${domainName}/userinfo`, requestOptions);
+    await fetch(`${domainName}/starinfo`, requestOptions);
     
 }
 
@@ -27,13 +27,19 @@ function Item (props) {
     function clickFavourite() {
         if (favourite === true) {
             setFavourite(false);
+            
         }
         else {
             setFavourite(true);
+            
         }
 
-        sendStar(favourite, props.user_id);
+        
     }
+
+    useEffect(() => {
+        sendStar(favourite, props.user_id);
+    }, [favourite])
 
     if (disqualify === true) {
         return;
