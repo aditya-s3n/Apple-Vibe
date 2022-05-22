@@ -15,16 +15,16 @@ function UserImage() {
                 <h1>Full Name<span class="badge badge-secondary"></span></h1>
                 <h4>@username<span class="label label-default"></span></h4>
                 <h6>Ontario, Canada<span class="label label-default"></span></h6>
-                <button type="button" class="btn btn-default bg-dark text-light">Update</button>
-                <div class="btn-group">
-                <button type="button" class="btn btn-primary">Unemployed</button>
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Employed, but looking</a></li>
-                    <li><a href="#">Employed</a></li>
-                </ul>
+                <a href="/UserUpdatePage"><button type="button" class="btn btn-default bg-dark text-light">Update</button></a>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Update
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
                 </div>
                 </div>
 
