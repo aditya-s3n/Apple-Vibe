@@ -4,37 +4,34 @@ import React, {useState, useEffect} from "react";
 import Item from "./Feed/Item"
 import NavBar from "../NavBar";
 
+
+async function getUserData() {
+    const domainName = "http://localhost:5000";
+    let response = await fetch(`${domainName}/userinfo`);
+    let data = await response.json();
+
+    return data;
+}
 function Feed() {
-    const domainName = "http://localhost:5000"
-    
-    const [userInfo, setUserInfo] = useState(null);
+    const [userInfo, setUserInfo] = useState([]);
 
     useEffect(() => {
-        fetch(`${domainName}/userinfo`)
-            .then(response => response.json())
-            .then(data => {
-                setUserInfo(data);
-            });
+        let data = getUserData();
+        data.then(value => {
+            setUserInfo(value.user_info)
+        })
     }, [])
 
     return (
         <div>
         
             <NavBar />
-
-            <Item videoURL="AdityaBVideoResume.mp4" biography="this is my biography" name="Aditya" imageURL="Person1.png" user_id={1}/>
-
-            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person2.jpg" />
-
-            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person3.png" />
-
-            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person4.jpg"/>
-
-            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person5.jpg" />
-
-            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person6.jpg" />
-
-            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person7.png" />
+            
+            {
+                userInfo.map(values => {
+                    return <Item starred={values.starred} tags={values.tags} videoURL="AdityaBVideoResume.mp4" biography={values.biography} imageURL={values.picture} user_id={values.id} name={`${values.fullName.firstName} ${values.fullName.lastName}`}/>
+                })
+            }
 
         </div>
     );
