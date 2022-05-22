@@ -31,8 +31,11 @@ def makeUser_talent(first_name, last_name, bio, tag: list, userNumber) -> None:
 
     talent_collection.insert_one(post)
 
-def findUser_talent(post_id) -> object:
-    return talent_collection.find_one({"_id": post_id})
+def findUsers() -> object:
+    return talent_collection.find();
+
+def findUser_talent(user_id) -> object:
+    return talent_collection.find_one({"_id": user_id})
  
 def find_star() -> object:
     return star_collection.find_one()
@@ -44,16 +47,17 @@ def save_star(star_array: list):
 # aditya_sen_bio = "Hi I'm Aditya, I'm a student at Iroquois Ridge High School and an ethusatic developer. At school I actively lead the Robotics Club and Team, and participate in clubs like Model UN, TU20 and anything to do with technology, engineering, or science"
 # person3_bio = "I do good work in keeping computer architure safe and secure. I am a white-hood hacker, if you need to cybersecruity maintaince I am you gal. Cheers."
 # person4_bio = "I am a congress-woman. I will keep you from getting money, you stole all the money you made off the backs of illegal immigrants. I have no developer experience, or any experience running companies. Thank you, please hire :)"
-# person5_bio = ""
-# person6_bio = ""
-# person7_bio = ""
+# person5_bio = "MMA Fighter and Commentator, Comedian, Father, Podcaster. I do it all. Won't find anywhere else, try DMT."
+# person6_bio = "Billionaire. Former CEO of Amazon, Founder of Amazon. I just like Amazon. :)"
+# person7_bio = "Hello I need a job. A job where I don't have to deal with kids vaping in the bathroom."
 # makeUser_talent("Aditya", "Bhatia", aditya_bhatia_bio, ["Developer", "Marketer", "Operations", "C-Suite"], 1)
 # makeUser_talent("Aditya", "Sen", aditya_sen_bio, ["Developer", "Full-Stack", "Operations", "C-Suite"], 2)
 # makeUser_talent("NFT", "Hacker", person3_bio, ["Developer", "Full-Stack", "Cybersecruity"], 3)
-# makeUser_talent("Alexandria", "Ocasio-Cortez", aditya_sen_bio, ["Developer", "Full-Stack", "Operations", "C-Suite"], 4)
-# makeUser_talent("Aditya", "Sen", aditya_sen_bio, ["Developer", "Full-Stack", "Operations", "C-Suite"], 5)
-# makeUser_talent("Aditya", "Sen", aditya_sen_bio, ["Developer", "Full-Stack", "Operations", "C-Suite"], 6)
-# makeUser_talent("Aditya", "Sen", aditya_sen_bio, ["Developer", "Full-Stack", "Operations", "C-Suite"], 7)
+# makeUser_talent("Alexandria", "Ocasio-Cortez", person4_bio, ["Congress-Woman", "Democrat", "Tax the Rich"], 4)
+# makeUser_talent("Joe", "Rogan", person5_bio, ["Podcaster", "TEXAS", "Tech Enthusiast", "C-Suite"], 5)
+# makeUser_talent("Jeff", "Bezos", person6_bio, ["Developer", "Full-Stack", "Operations", "C-Suite", "Founder", "AMAZON"], 6)
+# makeUser_talent("John", "Steiva", person7_bio, ["Investor", "Academia", "Operations", "C-Suite"], 7)
+# print("done");
 ###################################### ROUTING ######################################
 @app.route("/")
 def home():
@@ -67,15 +71,21 @@ def signup():
 def login():
     return jsonify({"page": "Log In"})
 
-@app.route("/user/<userID>")
-def user(userID):
-    user_info = findUser_talent(userID)
-    return jsonify({"page": "user", "info": user_info})
+# @app.route("/user/<userID>")
+# def user(userID):
+#     user_info = findUser_talent(userID)
+#     return jsonify({"page": "user", "info": user_info})
+
+@app.route("/userinfo")
+def userInfo():
+    return jsonify(findUsers())
 
 @app.route("/starinfo", methods=['GET', 'POST'])
 def starInfo():
     if request.method == "GET":
         return jsonify({"favourite": find_star()})
+    elif request.method == "POST":
+        pass
 
 @app.route("/star")
 def star():

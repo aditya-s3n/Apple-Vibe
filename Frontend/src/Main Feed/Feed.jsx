@@ -6,32 +6,36 @@ import NavBar from "../NavBar";
 
 function Feed() {
     const domainName = "http://localhost:5000"
-    const [starArray, setStarArray] = useState([]);
     
+    const [userInfo, setUserInfo] = useState(null);
+
     useEffect(() => {
-        fetch(`${domainName}/starinfo`)
+        fetch(`${domainName}/userinfo`)
             .then(response => response.json())
-            .then(data => setStarArray(data));
-    }, []);
+            .then(data => {
+                setUserInfo(data);
+            });
+    }, [])
 
     return (
         <div>
-            {console.log(setStarArray)}
+        
             <NavBar />
 
-            <Item biography="this is my biography" name="Aditya" imageURL="Person1.png" starred={starArray[0]}/>
+            <Item videoURL="AdityaBVideoResume.mp4" biography="this is my biography" name="Aditya" imageURL="Person1.png" user_id={1}/>
 
-            <Item imageURL="Person2.jpg" starred={starArray[1]}/>
+            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person2.jpg" />
 
-            <Item imageURL="Person3.png" starred={starArray[2]}/>
+            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person3.png" />
 
-            <Item imageURL="Person4.jpg" starred={starArray[3]}/>
+            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person4.jpg"/>
 
-            <Item imageURL="Person5.jpg" starred={starArray[4]}/>
+            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person5.jpg" />
 
-            <Item imageURL="Person6.jpg" tarred={starArray[5]}/>
+            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person6.jpg" />
 
-            <Item imageURL="Person7.png" starred={starArray[6]}/>
+            <Item videoURL="AdityaBVideoResume.mp4" imageURL="Person7.png" />
+
         </div>
     );
 }
