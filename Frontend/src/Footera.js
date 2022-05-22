@@ -4,10 +4,10 @@ import React from "react";
 //render Header function
 function Footera() {
     return (
-        <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        <div class="row">
+        <footer class="pt-4 my-md-5 pt-md-5 border-top container">
+        <div class="row container">
           <div class="col-12 col-md">
-            <img class="mb-2" src="Logo.png" alt="" width="24" height="19"/>
+            <img class="mb-2" src="Logo.png" alt="" width="30" height="30"/>
             <small class="d-block mb-3 text-muted">© 2017–2021</small>
           </div>
           <div class="col-6 col-md">

@@ -17,7 +17,7 @@ function Welcome() {
         <div class="col-lg-6 mx-auto">
           <p class="lead mb-4">Quickly make a match between a company and talent! Creating quick, efficient, and effective communication between potential companies and talent.</p>
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Get Started</button>
+            <a href="/pricing"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">Get Started</button></a>
             <a href="/SignupPage"><button type="button" class="btn btn-outline-secondary btn-lg px-4">Log In</button></a>
           </div>
         </div>
@@ -30,7 +30,7 @@ function Welcome() {
             <p class="col-lg-10 fs-4">Sign up and make connections! Providing quick information that makes you appealing to companies and finding new talent.</p>
           </div>
           <div class="col-md-10 mx-auto col-lg-5">
-            <form class="p-4 p-md-5 border rounded-3 bg-light">
+            <form class="p-4 p-md-5 border rounded-3 bg-light" action="/feed">
               <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" />
                 <label for="floatingInput">Email address</label>

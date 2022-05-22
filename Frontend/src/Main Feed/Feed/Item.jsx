@@ -7,26 +7,39 @@ import StarIcon from '@mui/icons-material/Star';
 import IconButton from '@mui/material/IconButton';
 import { yellow } from "@mui/material/colors";
 
-function Item (props) {
+
+async function sendStar(favourite, id) {
     const domainName = "http://localhost:5000"
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: id, star: favourite })
+    };
+    await fetch(`${domainName}/starinfo`, requestOptions);
+    
+}
+
+function Item (props) {
     const [disqualify, setDisqualify] = useState(false);
     //set state of favourite list
-    const [favourite, setFavourite] = useState(false);
-    
-    useState(() => {
-        fetch(`${domainName}/starinfo`)
-            .then(response => response.json())
-            .then(data => setFavourite(data.favourite[props.user_id]));
-    }, []);
-    
+    const [favourite, setFavourite] = useState(props.starred);
+
     function clickFavourite() {
         if (favourite === true) {
             setFavourite(false);
+            
         }
         else {
             setFavourite(true);
+            
         }
+
+        
     }
+
+    useEffect(() => {
+        sendStar(favourite, props.user_id);
+    }, [favourite])
 
     if (disqualify === true) {
         return;
@@ -43,7 +56,7 @@ function Item (props) {
 
                     <p className="col-md-8 fs-5 fw-bold">Video Resume:</p>
 
-                    <video width="300" height="500" autoplay controls>
+                    <video width="300" height="500" controls>
                         <source src={props.videoURL} type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
@@ -56,10 +69,9 @@ function Item (props) {
 
                     <hr />
                     <p>Looking for...</p>
-                    <Tag name="Developer" />
-                    {/* {props.tagMap.map(value => {
+                    {props.tags.map(value => {
                         return <Tag name={value} />
-                    })} */}
+                    })}
 
                 </div>
             </div>
