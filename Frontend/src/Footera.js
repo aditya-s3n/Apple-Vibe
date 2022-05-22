@@ -4,8 +4,8 @@ import React from "react";
 //render Header function
 function Footera() {
     return (
-        <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        <div class="row">
+        <footer class="pt-4 my-md-5 pt-md-5 border-top container">
+        <div class="row container">
           <div class="col-12 col-md">
             <img class="mb-2" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="24" height="19"/>
             <small class="d-block mb-3 text-muted">© 2017–2021</small>

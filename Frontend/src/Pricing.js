@@ -30,7 +30,7 @@ function Pricing() {
                         <li>Email support</li>
                         <li>Help center access</li>
                         </ul>
-                        <button type="button" class="w-100 btn btn-lg btn-primary">Get started</button>
+                        <a href="/feed"><button type="button" class="w-100 btn btn-lg btn-primary">Get started</button></a>
                     </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@ function Pricing() {
                         <li>Company branding</li>
                         <li>Dedicated Account Manager</li>
                         </ul>
-                        <button type="button" class="w-100 btn btn-lg btn-primary">Get started</button>
+                        <a href="/feed"><button type="button" class="w-100 btn btn-lg btn-primary">Get started</button></a>
                     </div>
                     </div>
                 </div>

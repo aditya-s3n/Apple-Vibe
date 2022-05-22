@@ -23,7 +23,7 @@ function Feed() {
     }, [])
 
     return (
-        <div>
+        <div className="container">
         
             <NavBar />
             
