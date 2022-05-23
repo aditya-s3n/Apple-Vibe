@@ -37,6 +37,7 @@ function UserImage() {
                     />
                     Your browser does not support the video tag.
                     </video>
+                    <br />
                 <button type="button" class="btn btn-primary">Update</button>
                 </div>
             

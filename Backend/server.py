@@ -1,17 +1,20 @@
 from flask import Flask, jsonify, request
+import os
 from flask_cors import CORS
 import pymongo
 import bson.json_util as json_util
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 CORS(app)
 
+load_dotenv()
 ###################################### MongoDB Database ######################################
 local_connection = "mongodb://localhost:27017"
 #Connection to Database
-conn_str = "mongodb+srv://Aditya:applevibe@cluster0.ovdha.mongodb.net/Applevibe?retryWrites=true&w=majority"
+conn_str = os.getenv("MONGO")
 # set a 5-second connection timeout
-client = pymongo.MongoClient(local_connection, serverSelectionTimeoutMS=5000)
+client = pymongo.MongoClient(conn_str, serverSelectionTimeoutMS=5000)
 #make collections
 db = client["Applevibe"]
 talent_collection = db["talent"]
