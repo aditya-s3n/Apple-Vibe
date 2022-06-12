@@ -6,7 +6,7 @@ import NavBar from "../NavBar";
 import Footera from "./Footera";
 
 function ComapnyFeed() {
-    const domainName = "http://localhost:5000"
+    const domainName = "https://orange-applevibe.herokuapp.com/"
     
     const [userInfo, setUserInfo] = useState(null);
 
