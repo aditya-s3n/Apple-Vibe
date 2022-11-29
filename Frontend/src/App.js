@@ -12,7 +12,7 @@ import Star from "./Starred/Star";
 
 function App() {
   //get the domain name and path name
-  const domainName = "https://orange-applevibe.herokuapp.com/"
+  const domainName = "https://us-east1-apple-vibe.cloudfunctions.net/apple-vibe-backend/"
   let pathName = window.location.pathname;
 
   //page to render state

@@ -9,7 +9,7 @@ import { yellow } from "@mui/material/colors";
 
 
 async function sendStar(favourite, id) {
-    const domainName = "http://localhost:5000"
+    const domainName = "https://orange-applevibe.herokuapp.com/"
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
