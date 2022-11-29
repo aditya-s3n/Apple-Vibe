@@ -12,7 +12,7 @@ import Star from "./Starred/Star";
 
 function App() {
   //get the domain name and path name
-  const domainName = "http://localhost:5000"
+  const domainName = "https://orange-applevibe.herokuapp.com/"
   let pathName = window.location.pathname;
 
   //page to render state
