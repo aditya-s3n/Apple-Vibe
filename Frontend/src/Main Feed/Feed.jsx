@@ -6,7 +6,7 @@ import NavBar from "../NavBar";
 
 
 async function getUserData() {
-    const domainName = "https://orange-applevibe.herokuapp.com/";
+    const domainName = "https://us-east1-apple-vibe.cloudfunctions.net/apple-vibe-backend";
     let response = await fetch(`${domainName}/userinfo`);
     let data = await response.json();
 

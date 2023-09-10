@@ -9,11 +9,11 @@ import { yellow } from "@mui/material/colors";
 
 
 async function sendStar(favourite, id) {
-    const domainName = "https://orange-applevibe.herokuapp.com/"
+    const domainName = "https://us-east1-apple-vibe.cloudfunctions.net/apple-vibe-backend"
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: id, star: favourite })
+        body: JSON.stringify({ id: id, star: favourite }),
     };
     await fetch(`${domainName}/starinfo`, requestOptions);
     

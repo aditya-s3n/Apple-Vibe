@@ -6,7 +6,7 @@ import NavBar from "../NavBar";
 import Footera from "./Footera";
 
 function ComapnyFeed() {
-    const domainName = "https://orange-applevibe.herokuapp.com/"
+    const domainName = "https://us-east1-apple-vibe.cloudfunctions.net/apple-vibe-backend"
     
     const [userInfo, setUserInfo] = useState(null);
 
